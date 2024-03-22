@@ -1,0 +1,138 @@
+:root {
+  --color-accent: #ffffff;
+  --color-light: #dddddd;
+  --color-text: #00000;
+  --color-background-contrast: #f5f5f5;
+  --color-background: #f5f5f5;
+}
+
+/* 全称セレクタを使って全ての要素に共通するスタイルを定義する */
+/* box-sizing: border-boxはborderを含めて要素のwidth,heightと解釈する設定 */
+/* h要素など一部の要素にはデフォルトでpaddingやmarginがついており、スタイリングの邪魔なので削除している */
+/* htmlで読み込んだフォントを適用する 意図通りのフォントが優先されるよう、記述する順番を意識する */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", "Noto Sans JP", sans-serif;
+}
+
+/* セクション間の余白を管理する */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  row-gap: 80px;
+  padding-bottom: 80px;
+}
+
+/* 余白の管理に使う汎用クラス */
+/* 共通化することで、見通しが良くなったり、変更の際の手間が減る */
+.container {
+  margin: auto;
+  max-width: 0 32px;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* ボタンのパーツに使う汎用クラス */
+.button {
+  display: block;
+  padding: 10px 0;
+  border-radius: 160px;
+  background-color: var(--color-background-contrast);
+  color: var(--color-text);
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color ease 0.2s;
+}
+
+/* 擬似クラスを使ってカーソルを合わせた時のスタイルを定義する */
+/* transitionをこっちに書くと、カーソルを合わせた時と外した時の挙動が変わってしまう */
+.button:hover {
+  color: var(--color-accent);
+  background-color: var(--color-background);
+}
+
+/* ボタンというクラス名だが、リンクとしての機能しか持たない場合はa要素を使う */
+/* デフォルトで設定されている下線の削除 */
+a.button {
+  text-decoration: none;
+}
+
+/* デフォルトで設定されているボーダーの削除 */
+button.button {
+  border: none;
+}
+
+/* flex-directionはデフォルトがrowなので、横並びにしたい時は単に display: flex; を指定するだけでよい  */
+.header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-background);
+}
+
+/* widthだけ指定すれば縦横比を保ったままheightも変化する（逆もまた然り） */
+.header-img {
+  width: 120px;
+}
+
+/* 背景画像の表示と中身の中央寄せ */
+.hero {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("img/hero.png");
+}
+
+.title {
+  color: var(--color-accent);
+  font-size: 32px;
+}
+
+/* 中身を横並びにする */
+.explanation {
+  display: flex;
+}
+
+/* これがないとテキストの長さによって要素の幅が変わり、見た目が揃わない */
+.explanation-heading {
+  min-width: 200px;
+}
+
+.curriculum {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+
+/* gapを使ってflexアイテム同士の余白を制御する */
+.curriculum-cards {
+  display: flex;
+  column-gap: 40px;
+}
+
+/* flex: 1; でそれぞれのcardが等しく伸縮するようになる */
+.curriculum-card {
+  flex: 1;
+  border: var(--color-light) solid 1px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform eles ease 0.2;
+}
+
+/* カーソルを合わせた時にフワッとする */
+.curriculum-card:hover {
+  transform: translaeY(-4px);
+}
+
+/* 画像を親要素の幅いっぱいに固定する */
+.curriculum-card-img {
+  width: 100%;
+}
+
+/* flex: 1;を設定することで、余白いっぱいに広がるようにしている */
